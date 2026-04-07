@@ -166,7 +166,7 @@ function Footer() {
                   <img
                     src={navbar.logoImage}
                     alt={navbar.logoLine1}
-                    className={`h-10 w-auto object-contain ${navbar.logoBrightness === 'invert' ? 'brightness-0 invert' : ''}`}
+                    className={`h-16 sm:h-20 w-auto object-contain ${navbar.logoBrightness === 'invert' ? 'brightness-0 invert' : ''}`}
                     loading="eager"
                   />
                 ) : (

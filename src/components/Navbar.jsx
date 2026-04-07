@@ -221,7 +221,7 @@ function Navbar({ onSearchOpen }) {
                   src={navbar.logoImage}
                   alt={navbar.logoLine1}
                   loading="eager"
-                  className={`h-12 sm:h-14 lg:h-16 w-auto object-contain ${
+                  className={`h-14 sm:h-16 lg:h-20 w-auto object-contain ${
                     navbar.logoBrightness === 'invert' ? 'brightness-0 invert' : ''
                   }`}
                   loading="eager"

@@ -153,9 +153,9 @@ function HeroSection() {
             loading="eager"
           />
         </AnimatePresence>
-        {/* Bright overlay -- white fade from left, light from bottom */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-white/20 z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/30 z-[1]" />
+        {/* Dark overlay -- same as inner page heroes */}
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/85 to-navy-950/30 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/70 via-navy-950/30 to-transparent z-[1]" />
       </motion.div>
 
       {/* Subtle green particles */}
@@ -196,7 +196,7 @@ function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.4 }}
-          className="text-gold-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] mb-8"
+          className="text-gold-400 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] mb-8"
           style={{ fontFamily: 'var(--font-sans)' }}
         >
           {hero.badge}
@@ -215,7 +215,7 @@ function HeroSection() {
                 className={`font-heading leading-[0.92] tracking-tight ${
                   line === 'YOUR'
                     ? 'bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 bg-clip-text text-transparent'
-                    : 'text-navy-900'
+                    : 'text-white'
                 }`}
                 style={{
                   fontSize: 'clamp(2.8rem, 8vw, 5.5rem)',
@@ -236,7 +236,7 @@ function HeroSection() {
           className="flex items-center gap-3 mt-8"
         >
           <div className="w-8 h-[2px] bg-gold-500/60" />
-          <p className="text-navy-700/50 text-xs sm:text-sm uppercase tracking-[0.2em]" style={{ fontFamily: 'var(--font-sans)' }}>
+          <p className="text-white/50 text-xs sm:text-sm uppercase tracking-[0.2em]" style={{ fontFamily: 'var(--font-sans)' }}>
             {hero.trustLine}
           </p>
         </motion.div>
@@ -258,7 +258,7 @@ function HeroSection() {
           </Link>
           <Link
             to="/services"
-            className="group inline-flex items-center gap-3 border-2 border-navy-900/20 text-navy-900 px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:border-gold-500 hover:text-gold-600 hover:bg-gold-50/50 rounded-full"
+            className="group inline-flex items-center gap-3 border-2 border-white/30 text-white px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:border-gold-500 hover:text-gold-400 hover:bg-white/5 rounded-full"
             style={{ fontFamily: 'var(--font-sans)' }}
           >
             {hero.ctaSecondary}

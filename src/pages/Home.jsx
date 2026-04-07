@@ -96,7 +96,7 @@ function GreenParticles() {
       {[...Array(15)].map((_, i) => (
         <div
           key={i}
-          className="absolute rounded-full"
+          className="absolute "
           style={{
             width: `${Math.random() * 4 + 2}px`,
             height: `${Math.random() * 4 + 2}px`,
@@ -167,7 +167,7 @@ function HeroSection() {
           <button
             key={i}
             onClick={() => setCurrentSlide(i)}
-            className={`w-[3px] transition-all duration-700 rounded-full ${
+            className={`w-[3px] transition-all duration-700  ${
               i === currentSlide ? 'h-10 bg-gold-500' : 'h-4 bg-navy-900/20 hover:bg-navy-900/40'
             }`}
             aria-label={`Slide ${i + 1}`}
@@ -188,7 +188,7 @@ function HeroSection() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
-          className="w-16 h-[3px] bg-gradient-to-r from-gold-500 to-gold-400/50 mb-6 origin-left rounded-full"
+          className="w-16 h-[3px] bg-gradient-to-r from-gold-500 to-gold-400/50 mb-6 origin-left "
         />
 
         {/* Subtitle badge */}
@@ -250,7 +250,7 @@ function HeroSection() {
         >
           <Link
             to="/contact"
-            className="group relative inline-flex items-center gap-3 bg-gold-500 text-white px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:bg-gold-600 hover:shadow-xl hover:shadow-gold-500/20 rounded-full"
+            className="group relative inline-flex items-center gap-3 bg-gold-500 text-white px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:bg-gold-600 hover:shadow-xl hover:shadow-gold-500/20 "
             style={{ fontFamily: 'var(--font-sans)' }}
           >
             {hero.ctaPrimary}
@@ -258,7 +258,7 @@ function HeroSection() {
           </Link>
           <Link
             to="/services"
-            className="group inline-flex items-center gap-3 border-2 border-white/30 text-white px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:border-gold-500 hover:text-gold-400 hover:bg-white/5 rounded-full"
+            className="group inline-flex items-center gap-3 border-2 border-white/30 text-white px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:border-gold-500 hover:text-gold-400 hover:bg-white/5 "
             style={{ fontFamily: 'var(--font-sans)' }}
           >
             {hero.ctaSecondary}
@@ -373,7 +373,7 @@ function ServicesGrid() {
           transition={{ duration: 0.4 }}
           className="mb-14 sm:mb-20"
         >
-          <div className="w-12 h-[3px] bg-gold-500 mb-6 rounded-full" />
+          <div className="w-12 h-[3px] bg-gold-500 mb-6 " />
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div>
               <p className="text-gold-600 text-xs uppercase tracking-[0.3em] mb-3" style={{ fontFamily: 'var(--font-sans)' }}>Our Solutions</p>
@@ -392,35 +392,14 @@ function ServicesGrid() {
           </div>
         </motion.div>
 
-        {/* BENTO GRID — varied sizes, polished layout */}
-        {/* Desktop: 4-col grid with spanning. Mobile: stacked cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+        {/* BENTO GRID — clean 3-col layout, no clustering */}
+        {/* Row 1: 1 large (2-col) + 1 standard. Row 2: 3 equal. Row 3: 1 standard + 1 large (2-col) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {servicesPreview.map((service, i) => {
             const IconComp = iconMap[service.iconName] || Star;
-            /* Bento layout pattern:
-               0: spans 2 cols, tall (hero card)
-               1: 1 col, tall
-               2: 1 col, standard
-               3: 1 col, standard
-               4: spans 2 cols, short/wide
-               5: 1 col, standard
-               6: 1 col, standard
-            */
-            const spanClass = i === 0
-              ? 'col-span-2 row-span-2'
-              : i === 1
-              ? 'col-span-1 row-span-2'
-              : i === 4
-              ? 'col-span-2'
-              : 'col-span-1';
-
-            const aspectClass = i === 0
-              ? 'aspect-[4/5] sm:aspect-square'
-              : i === 1
-              ? 'aspect-[3/4] sm:aspect-[3/5]'
-              : i === 4
-              ? 'aspect-[16/9] sm:aspect-[3/1]'
-              : 'aspect-square sm:aspect-[4/5]';
+            /* Clean bento: cards 0 and 4 span 2 cols on desktop */
+            const spanClass = (i === 0 || i === 4) ? 'sm:col-span-2 lg:col-span-2' : '';
+            const heightClass = (i === 0 || i === 4) ? 'h-[280px] sm:h-[340px] lg:h-[400px]' : 'h-[280px] sm:h-[320px]';
 
             return (
               <motion.div
@@ -432,7 +411,7 @@ function ServicesGrid() {
               >
                 <Link
                   to={`/services#${services?.items?.[i]?.slug || ''}`}
-                  className={`group relative block overflow-hidden h-full ${aspectClass}`}
+                  className={`group relative block overflow-hidden ${heightClass}`}
                 >
                   {/* Image */}
                   <img
@@ -453,9 +432,9 @@ function ServicesGrid() {
                     </span>
                   </div>
 
-                  {/* Icon badge */}
-                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 w-9 h-9 sm:w-10 sm:h-10 border border-gold-500/30 flex items-center justify-center bg-navy-950/60 backdrop-blur-sm group-hover:bg-gold-500/20 group-hover:border-gold-500 transition-all duration-500">
-                    <IconComp size={16} weight="light" className="text-gold-400" />
+                  {/* Icon badge — green filled circle like How It Works */}
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 w-11 h-11 sm:w-12 sm:h-12 bg-gold-500 flex items-center justify-center shadow-lg shadow-gold-500/30 group-hover:scale-110 transition-transform duration-300">
+                    <IconComp size={20} weight="duotone" className="text-white" />
                   </div>
 
                   {/* Content — always visible */}
@@ -529,7 +508,7 @@ function HowItWorks() {
           transition={{ duration: 0.4 }}
           className="text-center mb-16 sm:mb-24"
         >
-          <div className="w-12 h-[3px] bg-gold-500 mx-auto mb-6 rounded-full" />
+          <div className="w-12 h-[3px] bg-gold-500 mx-auto mb-6 " />
           <p className="text-gold-600 text-xs uppercase tracking-[0.3em] mb-3" style={{ fontFamily: 'var(--font-sans)' }}>How It Works</p>
           <h2 className="font-heading text-navy-900 leading-[0.95] font-bold" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)' }}>
             Your Solar <span className="text-gold-500">Journey</span>
@@ -553,10 +532,10 @@ function HowItWorks() {
                   className="relative text-center z-10"
                 >
                   {/* Circle with number */}
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-white border-2 border-gold-500 flex items-center justify-center shadow-lg shadow-gold-500/10 relative">
+                  <div className="w-16 h-16 mx-auto mb-6  bg-white border-2 border-gold-500 flex items-center justify-center shadow-lg shadow-gold-500/10 relative">
                     <IconComp size={24} weight="duotone" className="text-gold-500" />
                     {/* Step number badge */}
-                    <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-gold-500 text-white text-xs font-bold flex items-center justify-center shadow-md">
+                    <div className="absolute -top-2 -right-2 w-7 h-7  bg-gold-500 text-white text-xs font-bold flex items-center justify-center shadow-md">
                       {step.number}
                     </div>
                   </div>
@@ -597,7 +576,7 @@ function ProductsShowcase() {
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6"
         >
           <div>
-            <div className="w-12 h-[3px] bg-gold-500 mb-6 rounded-full" />
+            <div className="w-12 h-[3px] bg-gold-500 mb-6 " />
             <p className="text-gold-600 text-xs uppercase tracking-[0.3em] mb-3" style={{ fontFamily: 'var(--font-sans)' }}>Featured Products</p>
             <h2 className="font-heading text-navy-900 leading-[0.92] font-bold" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>
               Popular <span className="text-gold-500">Systems</span>
@@ -639,7 +618,7 @@ function ProductsShowcase() {
                 />
                 {/* Category badge */}
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="bg-gold-500 text-white text-[10px] uppercase tracking-[0.15em] px-3 py-1.5 font-semibold rounded-full" style={{ fontFamily: 'var(--font-sans)' }}>
+                  <span className="bg-gold-500 text-white text-[10px] uppercase tracking-[0.15em] px-3 py-1.5 font-semibold " style={{ fontFamily: 'var(--font-sans)' }}>
                     {product.category}
                   </span>
                 </div>
@@ -679,8 +658,8 @@ function StatsBand() {
     <section ref={ref} className="relative bg-navy-900 overflow-hidden">
       {/* Green glow gradients behind numbers */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-48 h-48 bg-gold-500/8 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-48 h-48 bg-gold-500/8 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-48 h-48 bg-gold-500/8  blur-3xl" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-48 h-48 bg-gold-500/8  blur-3xl" />
       </div>
 
       {/* Top green border */}
@@ -739,7 +718,7 @@ function AboutSection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, ease: 'easeOut' }}
           >
-            <div className="w-12 h-[3px] bg-gold-500 mb-6 rounded-full" />
+            <div className="w-12 h-[3px] bg-gold-500 mb-6 " />
             <p className="text-gold-600 text-xs uppercase tracking-[0.3em] mb-3" style={{ fontFamily: 'var(--font-sans)' }}>Our Story</p>
             <h2 className="font-heading text-navy-900 leading-[0.95] font-bold mb-8" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>
               Bridging Zimbabwe to<br />
@@ -858,7 +837,7 @@ function WhyChooseUs() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.15 }}
           >
-            <div className="w-12 h-[3px] bg-gold-500 mb-6 rounded-full" />
+            <div className="w-12 h-[3px] bg-gold-500 mb-6 " />
             <p className="text-gold-600 text-xs uppercase tracking-[0.3em] mb-3" style={{ fontFamily: 'var(--font-sans)' }}>The Difference</p>
             <h2 className="font-heading text-navy-900 leading-[0.95] font-bold mb-12" style={{ fontSize: 'clamp(2rem, 4.5vw, 3rem)' }}>
               Why Choose <span className="text-gold-500">Zambuko</span>
@@ -873,9 +852,9 @@ function WhyChooseUs() {
                   transition={{ duration: 0.3, delay: 0.3 + i * 0.1 }}
                   className="flex gap-5"
                 >
-                  <div className="shrink-0 mt-1">
-                    <div className="w-9 h-9 rounded-xl border border-gold-500/30 flex items-center justify-center bg-gold-500/10">
-                      <CheckCircle size={18} weight="fill" className="text-gold-500" />
+                  <div className="shrink-0 mt-0.5">
+                    <div className="w-11 h-11 bg-gold-500 flex items-center justify-center shadow-md shadow-gold-500/20">
+                      <CheckCircle size={20} weight="duotone" className="text-white" />
                     </div>
                   </div>
                   <div>
@@ -937,7 +916,7 @@ function TestimonialsSection() {
           className="text-center"
         >
           {/* Section header */}
-          <div className="w-12 h-[3px] bg-gold-500 mx-auto mb-6 rounded-full" />
+          <div className="w-12 h-[3px] bg-gold-500 mx-auto mb-6 " />
           <p className="text-gold-600 text-xs uppercase tracking-[0.3em] mb-3" style={{ fontFamily: 'var(--font-sans)' }}>Testimonials</p>
           <h2 className="font-heading text-navy-900 leading-[0.95] font-bold mb-12" style={{ fontSize: 'clamp(2rem, 4.5vw, 3rem)' }}>
             What Our Customers <span className="text-gold-500">Say</span>
@@ -963,7 +942,7 @@ function TestimonialsSection() {
 
               {/* Attribution */}
               <div className="flex flex-col items-center gap-3">
-                <div className="w-8 h-[2px] bg-gold-500 rounded-full" />
+                <div className="w-8 h-[2px] bg-gold-500 " />
                 <div className="text-navy-900 text-sm uppercase tracking-[0.15em] font-semibold" style={{ fontFamily: 'var(--font-sans)' }}>
                   {t.name}
                 </div>
@@ -983,7 +962,7 @@ function TestimonialsSection() {
           <div className="flex items-center justify-center gap-6 mt-12">
             <button
               onClick={prev}
-              className="w-10 h-10 rounded-full border border-navy-200 flex items-center justify-center text-navy-400 hover:text-gold-500 hover:border-gold-500 transition-colors duration-300"
+              className="w-10 h-10  border border-navy-200 flex items-center justify-center text-navy-400 hover:text-gold-500 hover:border-gold-500 transition-colors duration-300"
               aria-label="Previous testimonial"
             >
               <CaretLeft size={16} />
@@ -994,7 +973,7 @@ function TestimonialsSection() {
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  className={`h-[3px] rounded-full transition-all duration-500 ${
+                  className={`h-[3px]  transition-all duration-500 ${
                     i === active ? 'w-10 bg-gold-500' : 'w-3 bg-navy-200 hover:bg-navy-300'
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}
@@ -1004,7 +983,7 @@ function TestimonialsSection() {
 
             <button
               onClick={next}
-              className="w-10 h-10 rounded-full border border-navy-200 flex items-center justify-center text-navy-400 hover:text-gold-500 hover:border-gold-500 transition-colors duration-300"
+              className="w-10 h-10  border border-navy-200 flex items-center justify-center text-navy-400 hover:text-gold-500 hover:border-gold-500 transition-colors duration-300"
               aria-label="Next testimonial"
             >
               <CaretRight size={16} />
@@ -1051,7 +1030,7 @@ function LocationsStrip() {
           transition={{ duration: 0.4 }}
           className="text-center mb-14 sm:mb-20"
         >
-          <div className="w-12 h-[3px] bg-gold-500 mx-auto mb-6 rounded-full" />
+          <div className="w-12 h-[3px] bg-gold-500 mx-auto mb-6 " />
           <h2 className="font-heading text-navy-900 leading-[0.95] font-bold" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)' }}>
             Two Locations, <span className="text-gold-500">One Mission</span>
           </h2>
@@ -1081,16 +1060,16 @@ function LocationsStrip() {
                 <h3 className="font-heading text-navy-900 text-xl font-semibold mb-1">{loc.name}</h3>
                 <p className="text-gold-500 text-xs uppercase tracking-[0.2em] font-medium mb-4" style={{ fontFamily: 'var(--font-sans)' }}>{loc.subtitle}</p>
                 <div className="flex items-start gap-2 text-navy-700/50 text-sm mb-2">
-                  <MapPin size={16} className="text-gold-500 mt-0.5 shrink-0" />
+                  <div className="w-8 h-8 bg-gold-500 flex items-center justify-center shrink-0"><MapPin size={14} weight="duotone" className="text-white" /></div>
                   <span>{loc.address}</span>
                 </div>
                 <div className="flex items-center gap-2 text-navy-700/50 text-sm">
-                  <Phone size={16} className="text-gold-500 shrink-0" />
+                  <div className="w-8 h-8 bg-gold-500 flex items-center justify-center shrink-0"><Phone size={14} weight="duotone" className="text-white" /></div>
                   <a href={`tel:${loc.phone.replace(/\s/g, '')}`} className="hover:text-gold-500 transition-colors">{loc.phone}</a>
                 </div>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 mt-6 bg-gold-500/10 border border-gold-500/20 text-gold-600 px-5 py-2.5 text-xs uppercase tracking-[0.15em] font-semibold rounded-full hover:bg-gold-500 hover:text-white hover:border-gold-500 transition-all duration-300"
+                  className="inline-flex items-center gap-2 mt-6 bg-gold-500/10 border border-gold-500/20 text-gold-600 px-5 py-2.5 text-xs uppercase tracking-[0.15em] font-semibold  hover:bg-gold-500 hover:text-white hover:border-gold-500 transition-all duration-300"
                   style={{ fontFamily: 'var(--font-sans)' }}
                 >
                   Visit Store
@@ -1141,7 +1120,7 @@ function CTASection() {
           transition={{ duration: 1 }}
         >
           {/* Green line */}
-          <div className="w-16 h-[3px] bg-gold-500 mx-auto mb-8 rounded-full" />
+          <div className="w-16 h-[3px] bg-gold-500 mx-auto mb-8 " />
 
           {/* Giant text */}
           <h2
@@ -1160,7 +1139,7 @@ function CTASection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="group relative inline-flex items-center gap-3 bg-gold-500 text-white px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/25 rounded-full"
+              className="group relative inline-flex items-center gap-3 bg-gold-500 text-white px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/25 "
               style={{ fontFamily: 'var(--font-sans)' }}
             >
               {homeCta.ctaPrimary}
@@ -1170,7 +1149,7 @@ function CTASection() {
               href={`https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(homeCta.whatsappText)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 border-2 border-green-400/60 text-green-400 px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:bg-green-500/20 hover:border-green-400 rounded-full"
+              className="group inline-flex items-center gap-3 border-2 border-green-400/60 text-green-400 px-8 py-4 text-sm uppercase tracking-[0.15em] font-semibold transition-all duration-500 hover:bg-green-500/20 hover:border-green-400 "
               style={{ fontFamily: 'var(--font-sans)' }}
             >
               <WhatsappLogo size={20} weight="fill" />

@@ -321,6 +321,41 @@ function MarqueeTicker() {
 
 
 /* ================================================================
+   2.5 TRUSTED BRANDS MARQUEE
+   ================================================================ */
+function BrandsMarquee() {
+  const brands = [
+    { name: 'Jinko Solar', logo: '/brands/jinko.png' },
+    { name: 'Pylontech', logo: '/brands/pylontech.png' },
+    { name: 'Dyness', logo: '/brands/Dyness.png' },
+    { name: 'Sigenergy', logo: '/brands/sigenergy.png' },
+    { name: 'Sunsynk', logo: '/brands/sunsynk.png' },
+  ];
+  const repeated = [...brands, ...brands, ...brands, ...brands];
+
+  return (
+    <section className="bg-earth-50 py-8 sm:py-10 border-y border-earth-200 overflow-hidden">
+      <p className="text-center text-[10px] sm:text-xs uppercase tracking-[0.25em] text-navy-700/30 mb-6" style={{ fontFamily: 'var(--font-sans)' }}>
+        Trusted Brands We Work With
+      </p>
+      <div className="animate-marquee flex items-center whitespace-nowrap">
+        {repeated.map((brand, i) => (
+          <div key={i} className="flex items-center mx-8 sm:mx-12 shrink-0">
+            <img
+              src={brand.logo}
+              alt={brand.name}
+              className="h-8 sm:h-10 lg:h-12 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+              loading="eager"
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+
+/* ================================================================
    3. SERVICES GRID -- 7 cards with full-bleed local photos
    ================================================================ */
 function ServicesGrid() {
@@ -357,61 +392,88 @@ function ServicesGrid() {
           </div>
         </motion.div>
 
-        {/* Grid -- first card spans 2 cols */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        {/* BENTO GRID — varied sizes, polished layout */}
+        {/* Desktop: 4-col grid with spanning. Mobile: stacked cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
           {servicesPreview.map((service, i) => {
             const IconComp = iconMap[service.iconName] || Star;
+            /* Bento layout pattern:
+               0: spans 2 cols, tall (hero card)
+               1: 1 col, tall
+               2: 1 col, standard
+               3: 1 col, standard
+               4: spans 2 cols, short/wide
+               5: 1 col, standard
+               6: 1 col, standard
+            */
+            const spanClass = i === 0
+              ? 'col-span-2 row-span-2'
+              : i === 1
+              ? 'col-span-1 row-span-2'
+              : i === 4
+              ? 'col-span-2'
+              : 'col-span-1';
+
+            const aspectClass = i === 0
+              ? 'aspect-[4/5] sm:aspect-square'
+              : i === 1
+              ? 'aspect-[3/4] sm:aspect-[3/5]'
+              : i === 4
+              ? 'aspect-[16/9] sm:aspect-[3/1]'
+              : 'aspect-square sm:aspect-[4/5]';
+
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.35, delay: 0.03 * i }}
-                className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''}
+                transition={{ duration: 0.3, delay: 0.03 * i }}
+                className={spanClass}
               >
                 <Link
                   to={`/services#${services?.items?.[i]?.slug || ''}`}
-                  className={`group relative block overflow-hidden rounded-2xl ${i === 0 ? 'aspect-[16/9] sm:aspect-[2/1]' : 'aspect-[3/4]'}`}
+                  className={`group relative block overflow-hidden h-full ${aspectClass}`}
                 >
                   {/* Image */}
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     loading="eager"
                   />
 
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/50 to-navy-950/10 opacity-80" />
+                  {/* Multi-layer gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-navy-950/30 to-transparent" />
 
-                  {/* Green number watermark */}
-                  <div className="absolute top-4 right-5 z-10">
-                    <span className="text-gold-500/20 font-heading text-6xl sm:text-7xl font-bold leading-none">
+                  {/* Number watermark */}
+                  <div className="absolute top-3 right-4 sm:top-4 sm:right-5 z-10">
+                    <span className="text-white/10 font-heading text-5xl sm:text-6xl lg:text-7xl font-bold leading-none">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
 
-                  {/* Green icon badge */}
-                  <div className="absolute top-5 left-5 z-10 w-10 h-10 rounded-xl border border-gold-500/40 flex items-center justify-center bg-navy-950/50 backdrop-blur-sm group-hover:bg-gold-500/30 group-hover:border-gold-500/70 transition-all duration-500">
-                    <IconComp size={18} weight="light" className="text-gold-400" />
+                  {/* Icon badge */}
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 w-9 h-9 sm:w-10 sm:h-10 border border-gold-500/30 flex items-center justify-center bg-navy-950/60 backdrop-blur-sm group-hover:bg-gold-500/20 group-hover:border-gold-500 transition-all duration-500">
+                    <IconComp size={16} weight="light" className="text-gold-400" />
                   </div>
 
-                  {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-10">
-                    <h3 className="font-heading text-white text-xl sm:text-2xl font-semibold tracking-wide mb-2">
+                  {/* Content — always visible */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 lg:p-6 z-10">
+                    <h3 className={`font-heading text-white font-semibold tracking-wide mb-1 ${i === 0 ? 'text-lg sm:text-2xl' : 'text-sm sm:text-lg'}`}>
                       {service.title}
                     </h3>
-                    <p className="text-white/60 text-sm leading-relaxed" style={{ fontFamily: 'var(--font-sans)' }}>
-                      {service.desc}
+                    <p className={`text-white/50 leading-relaxed ${i === 0 || i === 4 ? 'text-xs sm:text-sm' : 'text-[11px] sm:text-xs'} ${i > 4 ? 'hidden sm:block' : ''}`} style={{ fontFamily: 'var(--font-sans)' }}>
+                      {i === 0 || i === 4 ? service.desc : service.desc?.substring(0, 60) + '...'}
                     </p>
-                    <div className="flex items-center gap-2 mt-3 text-gold-400 group-hover:translate-x-1 transition-transform duration-300">
-                      <span className="text-xs uppercase tracking-[0.2em]" style={{ fontFamily: 'var(--font-sans)' }}>Learn More</span>
-                      <ArrowRight size={14} />
+                    <div className="flex items-center gap-1.5 mt-2 text-gold-400 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                      <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em]" style={{ fontFamily: 'var(--font-sans)' }}>Learn More</span>
+                      <ArrowRight size={12} />
                     </div>
                   </div>
 
                   {/* Bottom green accent */}
-                  <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-gold-500 to-gold-400 z-10 rounded-b-2xl" />
+                  <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold-500 to-gold-400 z-10 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 </Link>
               </motion.div>
             );
@@ -1145,6 +1207,7 @@ function Home() {
     <PageTransition>
       <HeroSection />
       <MarqueeTicker />
+      <BrandsMarquee />
       <ServicesGrid />
       <HowItWorks />
       <ProductsShowcase />

@@ -132,7 +132,7 @@ function InlineStats() {
 function IconBoxStats() {
   const { stats } = siteData;
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <section className="py-20 bg-white" ref={ref}>
@@ -165,7 +165,7 @@ function IconBoxStats() {
 function CounterBarStats() {
   const { stats } = siteData;
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <section className="py-20 bg-navy-900" ref={ref}>

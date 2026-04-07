@@ -38,7 +38,7 @@ function About() {
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <SectionReveal direction="right">
               <div className="relative">
-                <img src={about.storyImage} alt={about.storyImageAlt} className="w-full aspect-[4/5] object-cover object-center rounded-2xl" loading="lazy" />
+                <img src={about.storyImage} alt={about.storyImageAlt} className="w-full aspect-[4/5] object-cover object-center rounded-2xl" loading="eager" />
                 <div className="absolute -bottom-6 -left-6 bg-gold-500 text-white p-6 rounded-xl shadow-xl hidden sm:block">
                   <div className="text-3xl font-bold font-heading">{about.storyProjectCount}</div>
                   <div className="text-sm font-medium text-white/80">{about.storyProjectLabel}</div>
@@ -128,7 +128,7 @@ function About() {
               <SectionReveal key={member.name} delay={i * 0.1}>
                 <div className="group text-center">
                   <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-4 border-2 border-transparent group-hover:border-gold-500/30 transition-colors duration-500">
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" loading="eager" />
                   </div>
                   <h4 className="font-heading text-navy-900 font-semibold text-lg">{member.name}</h4>
                   <p className="text-gold-600 text-xs uppercase tracking-[0.15em] mt-1" style={{ fontFamily: 'var(--font-sans)' }}>{member.role}</p>
@@ -169,7 +169,7 @@ function About() {
       {/* CTA */}
       <section className="relative py-24 sm:py-32 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/harisankar-hp6Xj7LyZ1E-unsplash.jpg" alt="Solar panels at sunset" className="w-full h-full object-cover object-center" loading="lazy" />
+          <img src="/images/harisankar-hp6Xj7LyZ1E-unsplash.jpg" alt="Solar panels at sunset" className="w-full h-full object-cover object-center" loading="eager" />
           <div className="absolute inset-0 bg-navy-900/70" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 text-center">

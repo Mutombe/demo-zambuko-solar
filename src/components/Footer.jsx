@@ -167,7 +167,7 @@ function Footer() {
                     src={navbar.logoImage}
                     alt={navbar.logoLine1}
                     className={`h-10 w-auto object-contain ${navbar.logoBrightness === 'invert' ? 'brightness-0 invert' : ''}`}
-                    loading="lazy"
+                    loading="eager"
                   />
                 ) : (
                   <div className="w-11 h-11 bg-gradient-to-br from-gold-400 to-gold-600 rounded-xl flex items-center justify-center shadow-lg shadow-gold-500/20 group-hover:shadow-gold-500/30 transition-shadow">

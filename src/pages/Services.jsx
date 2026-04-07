@@ -103,7 +103,7 @@ function Services() {
                                   src={service.image}
                                   alt={service.title}
                                   className="w-full aspect-[16/10] object-cover object-center"
-                                  loading="lazy"
+                                  loading="eager"
                                 />
                               </div>
                               {/* Details */}
@@ -143,7 +143,7 @@ function Services() {
       {/* CTA */}
       <section className="relative py-24 sm:py-32 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/raze-solar-Q8V1EEvnJgk-unsplash.jpg" alt="Solar installation" className="w-full h-full object-cover object-center" loading="lazy" />
+          <img src="/images/raze-solar-Q8V1EEvnJgk-unsplash.jpg" alt="Solar installation" className="w-full h-full object-cover object-center" loading="eager" />
           <div className="absolute inset-0 bg-navy-900/70" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 text-center">

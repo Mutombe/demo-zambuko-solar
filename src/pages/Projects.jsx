@@ -77,7 +77,7 @@ function Projects() {
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                        loading="lazy"
+                        loading="eager"
                       />
                       <div className="absolute top-4 left-4">
                         <span className="bg-gold-500 text-white text-[10px] uppercase tracking-[0.15em] px-3 py-1.5 font-semibold rounded-full" style={{ fontFamily: 'var(--font-sans)' }}>

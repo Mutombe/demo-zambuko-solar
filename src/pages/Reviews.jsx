@@ -159,7 +159,7 @@ function Reviews() {
       {/* CTA */}
       <section className="relative py-24 sm:py-32 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/biel-morro-HCha-UHkIg8-unsplash.jpg" alt="Solar panel" className="w-full h-full object-cover object-center" loading="lazy" />
+          <img src="/images/biel-morro-HCha-UHkIg8-unsplash.jpg" alt="Solar panel" className="w-full h-full object-cover object-center" loading="eager" />
           <div className="absolute inset-0 bg-navy-900/70" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 text-center">

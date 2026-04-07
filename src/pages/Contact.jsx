@@ -280,7 +280,7 @@ function Contact() {
             height="400"
             style={{ border: 0 }}
             allowFullScreen
-            loading="lazy"
+            loading="eager"
             referrerPolicy="no-referrer-when-downgrade"
             title="Zambuko Solar location map"
             className="w-full"

@@ -103,7 +103,7 @@ function HeroParallax() {
                       src={img.url}
                       alt={img.alt}
                       className="w-full h-full object-cover object-center"
-                      loading="lazy"
+                      loading="eager"
                     />
                   </div>
                 ))}

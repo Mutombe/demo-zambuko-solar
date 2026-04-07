@@ -77,7 +77,7 @@ function HeroBento() {
                   src={img2}
                   alt="Project showcase"
                   className="w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110"
-                  loading="lazy"
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/35 to-transparent transition-opacity duration-500 group-hover:opacity-60" />
               </div>
@@ -86,7 +86,7 @@ function HeroBento() {
                   src={img3}
                   alt="Project showcase"
                   className="w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-110"
-                  loading="lazy"
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/35 to-transparent transition-opacity duration-500 group-hover:opacity-60" />
               </div>

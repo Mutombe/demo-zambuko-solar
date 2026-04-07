@@ -42,7 +42,7 @@ const iconMap = {
 function AnimatedCounter({ target, suffix = '', duration = 2.5 }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-50px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
   const numericTarget = parseInt(target.replace(/[^0-9]/g, ''), 10) || 0;
 
   useEffect(() => {
@@ -195,7 +195,7 @@ function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.3, delay: 0.4 }}
           className="text-gold-600 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em] mb-8"
           style={{ fontFamily: 'var(--font-sans)' }}
         >
@@ -232,7 +232,7 @@ function HeroSection() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.4, delay: 1.2 }}
           className="flex items-center gap-3 mt-8"
         >
           <div className="w-8 h-[2px] bg-gold-500/60" />
@@ -245,7 +245,7 @@ function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.4 }}
+          transition={{ duration: 0.35, delay: 1.4 }}
           className="flex flex-wrap gap-4 mt-10"
         >
           <Link
@@ -325,7 +325,7 @@ function MarqueeTicker() {
    ================================================================ */
 function ServicesGrid() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
   const { servicesPreview, services } = siteData;
 
   return (
@@ -335,7 +335,7 @@ function ServicesGrid() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="mb-14 sm:mb-20"
         >
           <div className="w-12 h-[3px] bg-gold-500 mb-6 rounded-full" />
@@ -366,7 +366,7 @@ function ServicesGrid() {
                 key={service.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.08 * i }}
+                transition={{ duration: 0.35, delay: 0.03 * i }}
                 className={i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''}
               >
                 <Link
@@ -378,7 +378,7 @@ function ServicesGrid() {
                     src={service.image}
                     alt={service.title}
                     className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110"
-                    loading="lazy"
+                    loading="eager"
                   />
 
                   {/* Gradient overlay */}
@@ -428,7 +428,7 @@ function ServicesGrid() {
    ================================================================ */
 function HowItWorks() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   const steps = [
     {
@@ -464,7 +464,7 @@ function HowItWorks() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-16 sm:mb-24"
         >
           <div className="w-12 h-[3px] bg-gold-500 mx-auto mb-6 rounded-full" />
@@ -487,7 +487,7 @@ function HowItWorks() {
                   key={step.number}
                   initial={{ opacity: 0, y: 30 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.7, delay: 0.15 * i }}
+                  transition={{ duration: 0.35, delay: 0.05 * i }}
                   className="relative text-center z-10"
                 >
                   {/* Circle with number */}
@@ -521,7 +521,7 @@ function HowItWorks() {
 function ProductsShowcase() {
   const containerRef = useRef(null);
   const scrollRef = useRef(null);
-  const inView = useInView(containerRef, { once: true, margin: '-80px' });
+  const inView = useInView(containerRef, { once: true, margin: '0px' });
   const { productsShowcase } = siteData;
 
   return (
@@ -531,7 +531,7 @@ function ProductsShowcase() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6"
         >
           <div>
@@ -573,7 +573,7 @@ function ProductsShowcase() {
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
+                  loading="eager"
                 />
                 {/* Category badge */}
                 <div className="absolute top-4 left-4 z-10">
@@ -610,7 +610,7 @@ function ProductsShowcase() {
    ================================================================ */
 function StatsBand() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-50px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
   const { stats } = siteData;
 
   return (
@@ -635,7 +635,7 @@ function StatsBand() {
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: i * 0.12 }}
+              transition={{ duration: 0.35, delay: i * 0.12 }}
               className="text-center relative"
             >
               <div
@@ -665,7 +665,7 @@ function StatsBand() {
    ================================================================ */
 function AboutSection() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <section ref={ref} className="bg-earth-50 py-24 sm:py-32 lg:py-40 overflow-hidden">
@@ -722,7 +722,7 @@ function AboutSection() {
                   src="/images/danny-messina-OiPtLN9_04w-unsplash.jpg"
                   alt="Solar panel installation by Zambuko Solar"
                   className="w-full aspect-[4/5] object-cover object-center"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
 
@@ -732,7 +732,7 @@ function AboutSection() {
                   src="/images/raze-solar-Q8V1EEvnJgk-unsplash.jpg"
                   alt="Solar panel closeup"
                   className="w-full aspect-square object-cover object-center"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
 
@@ -760,7 +760,7 @@ function AboutSection() {
    ================================================================ */
 function WhyChooseUs() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
   const { whyChooseUs } = siteData;
 
   return (
@@ -778,7 +778,7 @@ function WhyChooseUs() {
               src={whyChooseUs.image}
               alt={whyChooseUs.imageAlt}
               className="w-full aspect-[4/5] object-cover object-center rounded-2xl"
-              loading="lazy"
+              loading="eager"
             />
             {/* Corner accents */}
             <div className="absolute -top-3 -left-3 w-20 h-20 border-t-2 border-l-2 border-gold-500/40 rounded-tl-2xl" />
@@ -808,7 +808,7 @@ function WhyChooseUs() {
                   key={point.title}
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+                  transition={{ duration: 0.3, delay: 0.3 + i * 0.1 }}
                   className="flex gap-5"
                 >
                   <div className="shrink-0 mt-1">
@@ -842,7 +842,7 @@ function TestimonialsSection() {
   const [active, setActive] = useState(0);
   const { homeTestimonials } = siteData;
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   const displayTestimonials = homeTestimonials.slice(0, 6);
 
@@ -871,7 +871,7 @@ function TestimonialsSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="text-center"
         >
           {/* Section header */}
@@ -891,7 +891,7 @@ function TestimonialsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.3 }}
             >
               <blockquote
                 className="text-navy-900 text-lg sm:text-xl lg:text-2xl leading-relaxed font-heading mb-10"
@@ -960,7 +960,7 @@ function TestimonialsSection() {
    ================================================================ */
 function LocationsStrip() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '0px' });
 
   const locations = [
     {
@@ -986,7 +986,7 @@ function LocationsStrip() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-14 sm:mb-20"
         >
           <div className="w-12 h-[3px] bg-gold-500 mx-auto mb-6 rounded-full" />
@@ -1002,7 +1002,7 @@ function LocationsStrip() {
               key={loc.name}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: i * 0.15 }}
+              transition={{ duration: 0.35, delay: i * 0.15 }}
               className="bg-white rounded-2xl overflow-hidden border border-earth-200 hover:border-gold-300 hover:shadow-xl hover:shadow-gold-500/5 transition-all duration-500 group"
             >
               {/* Image */}
@@ -1011,7 +1011,7 @@ function LocationsStrip() {
                   src={loc.image}
                   alt={loc.name}
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
               {/* Content */}
@@ -1064,7 +1064,7 @@ function CTASection() {
           src={homeCta.backgroundImage}
           alt={homeCta.backgroundAlt}
           className="w-full h-[130%] object-cover object-center"
-          loading="lazy"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-navy-900/70" />
       </motion.div>
@@ -1075,7 +1075,7 @@ function CTASection() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: true, margin: '0px' }}
           transition={{ duration: 1 }}
         >
           {/* Green line */}

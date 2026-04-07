@@ -66,7 +66,7 @@ function ProjectImage({ src, alt, className = '' }) {
         src={src}
         alt={alt}
         className={`w-full h-full object-cover object-center ${className}`}
-        loading="lazy"
+        loading="eager"
       />
       {/* Inner shadow overlay for depth */}
       <div className="absolute inset-0 shadow-[inset_0_-60px_60px_-30px_rgba(0,0,0,0.5)] pointer-events-none" />

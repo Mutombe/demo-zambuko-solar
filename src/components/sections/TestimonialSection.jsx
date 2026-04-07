@@ -48,7 +48,7 @@ function AvatarWithRing({ item, size = 'md', darkBg = false }) {
   return (
     <div className={`${s.container} rounded-full overflow-hidden shrink-0 ring-2 ring-gold-500/30 ring-offset-2 ${ringOffset}`}>
       {item.avatar ? (
-        <img src={item.avatar} alt={item.name} className="w-full h-full object-cover object-center" loading="lazy" referrerPolicy="no-referrer" />
+        <img src={item.avatar} alt={item.name} className="w-full h-full object-cover object-center" loading="eager" referrerPolicy="no-referrer" />
       ) : (
         <div className={`w-full h-full bg-gradient-to-br from-navy-900 to-navy-700 flex items-center justify-center text-white font-semibold ${s.text}`}>
           {item.name.charAt(0)}

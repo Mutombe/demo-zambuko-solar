@@ -15,8 +15,8 @@ function SectionReveal({ children, className = '', delay = 0, direction = 'up' }
     <motion.div
       initial={{ opacity: 0, ...offset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.7, delay, ease: 'easeOut' }}
+      viewport={{ once: true, margin: '0px' }}
+      transition={{ duration: 0.3, delay, ease: 'easeOut' }}
       className={className}
     >
       {children}

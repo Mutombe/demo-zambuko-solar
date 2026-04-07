@@ -45,74 +45,58 @@ const socialIconMap = {
 /*  Utility Bar — phone / email / hours | social icons                */
 /* ------------------------------------------------------------------ */
 function UtilityBar({ business, visible }) {
-  const socials = business.socialLinks || {};
-  const hasSocials = Object.values(socials).some((v) => v && v !== '#');
   const firstHours = business.hours?.[0];
 
   return (
     <motion.div
       initial={false}
-      animate={{
-        height: visible ? 'auto' : 0,
-        opacity: visible ? 1 : 0,
-      }}
+      animate={{ height: visible ? 'auto' : 0, opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-      className="overflow-hidden bg-navy-950 border-b border-white/5 relative z-[1]"
+      className="overflow-hidden border-b border-white/5 relative z-[1]"
+      style={{ backgroundColor: '#1B3A4B' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-8 text-white/60 text-xs">
-          {/* Left — contact details */}
-          <div className="flex items-center gap-4 sm:gap-6 min-w-0">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-9 sm:h-10 text-white/70 text-xs">
+          {/* Left — phone + email */}
+          <div className="flex items-center gap-3 sm:gap-5">
             {business.phone && (
-              <a
-                href={`tel:${business.phoneRaw || business.phone}`}
-                className="flex items-center gap-1.5 hover:text-gold-400 transition-colors shrink-0"
-              >
-                <Phone size={12} weight="bold" />
-                <span className="hidden xs:inline">{business.phone}</span>
+              <a href={`tel:${business.phoneRaw || business.phone}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
+                <Phone size={13} weight="bold" className="text-green-400" />
+                <span className="text-[10px] sm:text-xs">{business.phone}</span>
               </a>
             )}
             {business.email && (
-              <a
-                href={`mailto:${business.email}`}
-                className="hidden sm:flex items-center gap-1.5 hover:text-gold-400 transition-colors min-w-0"
-              >
-                <Envelope size={12} weight="bold" className="shrink-0" />
+              <a href={`mailto:${business.email}`} className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+                <Envelope size={13} weight="bold" className="text-green-400" />
                 <span className="truncate">{business.email}</span>
               </a>
             )}
             {firstHours && (
               <span className="hidden lg:flex items-center gap-1.5">
-                <Clock size={12} weight="bold" className="shrink-0" />
-                <span>
-                  {firstHours.day}: {firstHours.time}
-                </span>
+                <Clock size={13} weight="bold" className="text-green-400" />
+                <span>{firstHours.day}: {firstHours.time}</span>
               </span>
             )}
           </div>
 
-          {/* Right — social icons */}
-          {hasSocials && (
-            <div className="flex items-center gap-2">
-              {Object.entries(socials).map(([platform, url]) => {
-                if (!url || url === '#') return null;
-                const Icon = socialIconMap[platform];
-                if (!Icon) return null;
-                return (
-                  <a
-                    key={platform}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1 hover:text-gold-400 transition-colors"
-                    aria-label={platform}
-                  >
-                    <Icon size={14} weight="bold" />
-                  </a>
-                );
-              })}
-            </div>
-          )}
+          {/* Right — socials (always visible on mobile + desktop) */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
+            <a href="https://wa.me/263778210398" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-1.5 hover:text-green-400 transition-colors" aria-label="WhatsApp">
+              <WhatsappLogo size={15} weight="bold" />
+            </a>
+            <a href="https://facebook.com/zambukosolar" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-1.5 hover:text-blue-400 transition-colors" aria-label="Facebook">
+              <FacebookLogo size={15} weight="bold" />
+            </a>
+            <a href="https://instagram.com/zambukosolar" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-1.5 hover:text-pink-400 transition-colors" aria-label="Instagram">
+              <InstagramLogo size={15} weight="bold" />
+            </a>
+            <a href="https://linkedin.com/company/zambukosolar" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-1.5 hover:text-blue-300 transition-colors" aria-label="LinkedIn">
+              <LinkedinLogo size={15} weight="bold" />
+            </a>
+            <a href={`tel:${business.phoneRaw || business.phone}`} className="sm:hidden p-1 hover:text-green-400 transition-colors" aria-label="Call">
+              <Phone size={15} weight="bold" />
+            </a>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -236,7 +220,8 @@ function Navbar({ onSearchOpen }) {
                 <img
                   src={navbar.logoImage}
                   alt={navbar.logoLine1}
-                  className={`h-9 sm:h-10 lg:h-11 w-auto object-contain ${
+                  loading="eager"
+                  className={`h-12 sm:h-14 lg:h-16 w-auto object-contain ${
                     navbar.logoBrightness === 'invert' ? 'brightness-0 invert' : ''
                   }`}
                   loading="eager"
